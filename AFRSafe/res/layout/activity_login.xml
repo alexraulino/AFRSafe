@@ -10,7 +10,9 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:layout_gravity="center"
+        android:layout_weight="0.33"
         android:orientation="vertical"
         android:paddingLeft="20dp"
         android:paddingRight="20dp" >
@@ -20,15 +22,17 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:background="@color/white"
+            android:layout_marginTop="10dp"
+            android:background="@color/input_login_bg"
             android:hint="@string/hint_password"
             android:inputType="textPassword"
             android:padding="10dp"
             android:singleLine="true"
             android:textColor="@color/input_login"
-            android:textColorHint="@color/input_login_hint" />
+            android:textColorHint="@color/input_login_hint" >
 
-        <!-- Login Button -->
+            <requestFocus />
+        </EditText>
 
         <Button
             android:id="@+id/btnLogin"
@@ -37,18 +41,17 @@
             android:layout_marginTop="20dip"
             android:background="@color/btn_login_bg"
             android:text="@string/btn_login"
-            android:textColor="@color/btn_login" />
-
-        <!-- Link to Login Screen -->
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/btnLinkToRegisterScreen"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dip"
-            android:background="@null"
+            android:layout_marginTop="20dip"
+            android:background="@color/btn_login_bg"
             android:text="@string/btn_link_to_register"
             android:textColor="@color/white" />
+
     </LinearLayout>
 
 </LinearLayout>
