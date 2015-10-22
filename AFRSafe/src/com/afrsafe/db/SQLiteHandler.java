@@ -1,4 +1,4 @@
-package afrsafe.db;
+package com.afrsafe.db;
 
 import java.util.HashMap;
 

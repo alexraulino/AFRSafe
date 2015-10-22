@@ -1,8 +1,5 @@
-package afrsafe.activity;
+package com.afrsafe.activity;
 
-import info.androidhive.loginandregistration.R;
-import afrsafe.db.SQLiteHandler;
-import afrsafe.db.SessionManager;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -11,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.afrsafe.R;
+import com.afrsafe.db.SQLiteHandler;
+import com.afrsafe.db.SessionManager;
 
 public class LoginActivity extends Activity {
 	private static final String TAG = RegisterActivity.class.getSimpleName();

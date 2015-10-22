@@ -1,4 +1,4 @@
-package afrsafe.db;
+package com.afrsafe.db;
 
 import android.content.Context;
 import android.content.SharedPreferences;

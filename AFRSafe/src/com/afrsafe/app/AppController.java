@@ -1,4 +1,4 @@
-package afrsafe.app;
+package com.afrsafe.app;
 
 import android.app.Application;
 
