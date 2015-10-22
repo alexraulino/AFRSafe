@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AFR Safe</string>
+    <string name="hint_password">Senha</string>
+    <string name="btn_login">Entrar</string>
+    <string name="btn_register">Gravar</string>
+    <string name="btn_link_to_register">Gravar Senha</string>
+    <string name="btn_link_to_login">Entrar</string>
+    <string name="welcome">Bem Vindo</string>
+    <string name="btn_logout">Sair</string>
+    
+</resources>
