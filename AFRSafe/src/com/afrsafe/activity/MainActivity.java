@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.afrsafe.R;
 import com.afrsafe.app.AppController;
@@ -19,8 +19,10 @@ import com.afrsafe.db.SessionManager;
 
 public class MainActivity extends Activity {
 
-	private Button btnLogout;
-	private Button btnReset;
+	private ImageButton btnSair;
+	private ImageButton btnReset;
+	private ImageButton btnPuxar;
+	private ImageButton btnGalery;
 
 	private SQLiteHandler db;
 	private SessionManager session;
@@ -31,8 +33,10 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		btnLogout = (Button) findViewById(R.id.btnLogout);
-		btnReset = (Button) findViewById(R.id.BtnResetSenha);
+		btnSair = (ImageButton) findViewById(R.id.BtnSair);
+		btnReset = (ImageButton) findViewById(R.id.BtnReset);
+		btnGalery = (ImageButton) findViewById(R.id.BtnGalery);
+		btnPuxar = (ImageButton) findViewById(R.id.BtnPuxar);
 
 		// SqLite database handler
 		db = new SQLiteHandler(getApplicationContext());
@@ -55,7 +59,7 @@ public class MainActivity extends Activity {
 		HashMap<String, String> user = db.getUserDetails();
 
 		// Logout button click event
-		btnLogout.setOnClickListener(new View.OnClickListener() {
+		btnSair.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -64,6 +68,23 @@ public class MainActivity extends Activity {
 		});
 
 		btnReset.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				db.deleteUsers();
+				logoutUser();
+			}
+		});
+
+		btnGalery.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+			}
+		});
+
+		btnPuxar.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
