@@ -40,6 +40,7 @@ public class LoginActivity extends Activity {
 
 		// Session manager
 		session = new SessionManager(getApplicationContext());
+		session.setLogin(false);
 
 		// Check if user is already logged in or not
 		if (session.isLoggedIn()) {
