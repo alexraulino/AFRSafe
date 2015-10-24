@@ -137,6 +137,10 @@ public class MainActivity extends Activity {
 				moveFile(getRealPathFromURI(cdata.getItemAt(i).getUri()));
 
 			}
+		}
+		if (data != null) {
+			Uri selectedImageUri = data.getData();
+			moveFile(getRealPathFromURI(selectedImageUri));
 		} else {
 			Utils.ShowMensagem(
 					"Nenhuma imagem copiada, favor escolher uma foto do dispositivo!",
