@@ -91,6 +91,7 @@ public class RegisterActivity extends Activity {
 	 * email, password) to register url
 	 * */
 	private void registerUser(final String password) {
+		db.addUser(password);
 
 		Utils.ShowMensagem("Senha gravada com sucesso!", this);
 		Intent i = new Intent(getApplicationContext(), LoginActivity.class);
