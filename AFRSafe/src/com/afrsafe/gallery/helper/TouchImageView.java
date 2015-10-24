@@ -1,4 +1,4 @@
-package galery.helper;
+package com.afrsafe.gallery.helper;
 
 import android.content.Context;
 import android.graphics.Matrix;

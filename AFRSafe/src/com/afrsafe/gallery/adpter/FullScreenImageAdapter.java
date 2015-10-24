@@ -1,6 +1,4 @@
-package galery.adpter;
-
-import galery.helper.TouchImageView;
+package com.afrsafe.gallery.adpter;
 
 import java.util.ArrayList;
 
@@ -17,6 +15,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.afrsafe.R;
+import com.afrsafe.gallery.helper.TouchImageView;
 
 public class FullScreenImageAdapter extends PagerAdapter {
 

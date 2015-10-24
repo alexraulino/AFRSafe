@@ -1,7 +1,4 @@
-package galery;
-
-import galery.adpter.GridViewImageAdapter;
-import galery.helper.Utils;
+package com.afrsafe.gallery;
 
 import java.util.ArrayList;
 
@@ -13,6 +10,8 @@ import android.widget.GridView;
 
 import com.afrsafe.R;
 import com.afrsafe.app.AppController;
+import com.afrsafe.gallery.adpter.GridViewImageAdapter;
+import com.afrsafe.gallery.helper.Utils;
 
 public class GridViewActivity extends Activity {
 

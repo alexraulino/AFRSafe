@@ -1,6 +1,4 @@
-package galery.adpter;
-
-import galery.FullScreenViewActivity;
+package com.afrsafe.gallery.adpter;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+
+import com.afrsafe.gallery.FullScreenViewActivity;
 
 public class GridViewImageAdapter extends BaseAdapter {
 

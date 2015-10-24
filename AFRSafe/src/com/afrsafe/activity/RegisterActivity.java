@@ -7,14 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.afrsafe.R;
 import com.afrsafe.db.SQLiteHandler;
 import com.afrsafe.db.SessionManager;
+import com.afrsafe.gallery.helper.Utils;
 
 public class RegisterActivity extends Activity {
-	private static final String TAG = RegisterActivity.class.getSimpleName();
 	private Button btnRegister;
 	private Button btnLinkToLogin;
 	private EditText inputPassword;
@@ -57,10 +56,8 @@ public class RegisterActivity extends Activity {
 			public void onClick(View view) {
 
 				if (!db.getUserDetails().isEmpty()) {
-					Toast.makeText(getApplicationContext(),
-							"Ja existe uma senha cadastrada", Toast.LENGTH_LONG)
-							.show();
-					hideDialog();
+					Utils.ShowMensagem("Ja existe uma senha cadastrada",
+							RegisterActivity.this);
 					return;
 				}
 
@@ -69,10 +66,8 @@ public class RegisterActivity extends Activity {
 				if (!password.isEmpty()) {
 					registerUser(password);
 				} else {
-					Toast.makeText(getApplicationContext(),
-							"Favor informar uma senha!", Toast.LENGTH_LONG)
-							.show();
-					hideDialog();
+					Utils.ShowMensagem("Favor informar uma senha!",
+							RegisterActivity.this);
 				}
 			}
 		});
@@ -97,25 +92,11 @@ public class RegisterActivity extends Activity {
 	 * */
 	private void registerUser(final String password) {
 
-		pDialog.setMessage("Gravando Senha!");
-		showDialog();
-		db.addUser(password);
-		hideDialog();
-		pDialog.setMessage("Senha gravada com sucesso!");
-		hideDialog();
+		Utils.ShowMensagem("Senha gravada com sucesso!", this);
 		Intent i = new Intent(getApplicationContext(), LoginActivity.class);
 		startActivity(i);
 		finish();
 
 	}
 
-	private void showDialog() {
-		if (!pDialog.isShowing())
-			pDialog.show();
-	}
-
-	private void hideDialog() {
-		if (pDialog.isShowing())
-			pDialog.dismiss();
-	}
 }

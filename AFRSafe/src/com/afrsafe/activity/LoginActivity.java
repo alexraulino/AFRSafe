@@ -7,14 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.afrsafe.R;
 import com.afrsafe.db.SQLiteHandler;
 import com.afrsafe.db.SessionManager;
+import com.afrsafe.gallery.helper.Utils;
 
 public class LoginActivity extends Activity {
-	private static final String TAG = RegisterActivity.class.getSimpleName();
 	private Button btnLogin;
 	private Button btnLinkToRegister;
 	private EditText inputPassword;
@@ -61,13 +60,12 @@ public class LoginActivity extends Activity {
 				if (!password.isEmpty()) {
 					// login user
 					checkLogin(password);
-					hideDialog();
+
 				} else {
 					// Prompt user to enter credentials
-					Toast.makeText(getApplicationContext(),
-							"Favor informar a senha!", Toast.LENGTH_LONG)
-							.show();
-					hideDialog();
+					Utils.ShowMensagem("Favor informar a senha!",
+							LoginActivity.this);
+
 				}
 			}
 
@@ -80,10 +78,8 @@ public class LoginActivity extends Activity {
 			public void onClick(View view) {
 
 				if (!db.getUserDetails().isEmpty()) {
-					Toast.makeText(getApplicationContext(),
-							"Já existe senha gravada!", Toast.LENGTH_LONG)
-							.show();
-					hideDialog();
+					Utils.ShowMensagem("Já existe senha gravada!",
+							LoginActivity.this);
 					return;
 				}
 
@@ -101,20 +97,14 @@ public class LoginActivity extends Activity {
 	 * */
 	private void checkLogin(final String password) {
 
-		pDialog.setMessage("Entrando ...");
-		showDialog();
-
 		if (db.getUserDetails().isEmpty()) {
-			Toast.makeText(getApplicationContext(),
-					"Não existe senha gravada!", Toast.LENGTH_LONG).show();
-			hideDialog();
+			Utils.ShowMensagem("Não existe senha gravada!", this);
 			return;
 		}
 
 		if (!db.getUserDetails().containsValue(password)) {
-			Toast.makeText(getApplicationContext(), "Senha invalida!",
-					Toast.LENGTH_LONG).show();
-			hideDialog();
+			Utils.ShowMensagem("Senha invalida!", this);
+
 			return;
 		}
 
@@ -125,13 +115,4 @@ public class LoginActivity extends Activity {
 		finish();
 	}
 
-	private void showDialog() {
-		if (!pDialog.isShowing())
-			pDialog.show();
-	}
-
-	private void hideDialog() {
-		if (pDialog.isShowing())
-			pDialog.dismiss();
-	}
 }

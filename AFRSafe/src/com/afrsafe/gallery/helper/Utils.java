@@ -1,16 +1,19 @@
-package galery.helper;
+package com.afrsafe.gallery.helper;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Point;
+import android.view.ContextThemeWrapper;
 import android.view.Display;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.afrsafe.R;
 import com.afrsafe.app.AppController;
 
 public class Utils {
@@ -106,5 +109,15 @@ public class Utils {
 		}
 		columnWidth = point.x;
 		return columnWidth;
+	}
+
+	public static void ShowMensagem(String aMSg, Activity act) {
+		AlertDialog.Builder dlgAlert = new AlertDialog.Builder(
+				new ContextThemeWrapper(act, android.R.style.Theme_Dialog));
+		dlgAlert.setMessage(aMSg);
+		dlgAlert.setTitle(R.string.app_name);
+		dlgAlert.setPositiveButton("OK", null);
+		dlgAlert.setCancelable(true);
+		dlgAlert.create().show();
 	}
 }
