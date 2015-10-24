@@ -1,13 +1,22 @@
 package com.afrsafe.activity;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.Intent;
+import android.database.Cursor;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -88,13 +97,12 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// db.deleteUsers();
-				// logoutUser();
 
 				Intent galleryIntent = new Intent(
 						Intent.ACTION_PICK,
 						android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 				galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+
 				startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
 
 			}
@@ -118,15 +126,83 @@ public class MainActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
-		if (data.getClipData() != null) {
-
+		if ((data != null) && (data.getClipData() != null)) {
 			ClipData cdata = data.getClipData();
+			for (int i = 0; i <= cdata.getItemCount() - 1; i++) {
 
-			for (int i = 0; i < cdata.getItemCount() - 1; i++) {
-				Log.d(MainActivity.class.getSimpleName(), cdata.getItemAt(i)
-						.toString());
+				moveFile(getRealPathFromURI(cdata.getItemAt(i).getUri()));
+
 			}
 
 		}
+	}
+
+	public String getRealPathFromURI(Uri contentUri) {
+		String[] proj = { MediaStore.Audio.Media.DATA };
+		Cursor cursor = managedQuery(contentUri, proj, null, null, null);
+		int column_index = cursor
+				.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
+		cursor.moveToFirst();
+		return cursor.getString(column_index);
+	}
+
+	private void moveFile(String inputFile) {
+
+		InputStream in = null;
+		OutputStream out = null;
+
+		try {
+
+			// create output directory if it doesn't exist
+			File dir = new File(Environment.getExternalStorageDirectory()
+					+ AppController.PHOTO_ALBUM + "/");
+			if (!dir.exists()) {
+				dir.mkdirs();
+			}
+
+			in = new FileInputStream(inputFile);
+			File file = new File(inputFile);
+			String newname = file.getName().split("\\.")[0];
+
+			out = new FileOutputStream(
+					Environment.getExternalStorageDirectory()
+							+ AppController.PHOTO_ALBUM + "/" + newname
+							+ AppController.EXT_ARQUIVO);
+
+			byte[] buffer = new byte[1024];
+			int read;
+			while ((read = in.read(buffer)) != -1) {
+				out.write(buffer, 0, read);
+			}
+			in.close();
+			in = null;
+
+			// write the output file
+			out.flush();
+			out.close();
+			out = null;
+
+			// delete the original file
+			File filedel = new File(inputFile);
+			filedel.delete();
+
+			MediaScannerConnection.scanFile(this, new String[] { inputFile },
+					null, new MediaScannerConnection.OnScanCompletedListener() {
+
+						@Override
+						public void onScanCompleted(String path, Uri uri) {
+							Log.i("ExternalStorage", "Scanned " + path + ":");
+							Log.i("ExternalStorage", "-> uri=" + uri);
+						}
+					});
+
+		}
+
+		catch (FileNotFoundException fnfe1) {
+			Log.e("tag", fnfe1.getMessage());
+		} catch (Exception e) {
+			Log.e("tag", e.getMessage());
+		}
+
 	}
 }
