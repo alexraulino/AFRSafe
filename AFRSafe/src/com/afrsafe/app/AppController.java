@@ -11,6 +11,8 @@ public class AppController extends Application {
 	// Number of columns of Grid View
 	public static final int NUM_OF_COLUMNS = 2;
 
+	public static final boolean DEBUG = false;
+
 	// Gridview image padding
 	public static final int GRID_PADDING = 8; // in dp
 
