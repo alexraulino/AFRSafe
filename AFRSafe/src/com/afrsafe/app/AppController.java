@@ -9,7 +9,7 @@ public class AppController extends Application {
 
 	public static final String TAG = AppController.class.getSimpleName();
 	// Number of columns of Grid View
-	public static final int NUM_OF_COLUMNS = 3;
+	public static final int NUM_OF_COLUMNS = 2;
 
 	// Gridview image padding
 	public static final int GRID_PADDING = 8; // in dp
@@ -20,7 +20,7 @@ public class AppController extends Application {
 	public static final String EXT_ARQUIVO = ".AFRSafe";
 
 	// supported file formats
-	public static final List<String> FILE_EXTN = Arrays.asList("AFRSafe");
+	public static final List<String> FILE_EXTN = Arrays.asList("afrsafe");
 
 	private static AppController mInstance;
 

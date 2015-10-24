@@ -8,10 +8,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Point;
+import android.os.Environment;
 import android.view.ContextThemeWrapper;
 import android.view.Display;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.afrsafe.R;
 import com.afrsafe.app.AppController;
@@ -19,59 +19,49 @@ import com.afrsafe.app.AppController;
 public class Utils {
 
 	private final Context _context;
+	private static ArrayList<String> paths = new ArrayList<String>();
 
 	// constructor
 	public Utils(Context context) {
 		this._context = context;
 	}
 
-	/*
-	 * Reading file paths from SDCard
-	 */
-	public ArrayList<String> getFilePaths() {
-		ArrayList<String> filePaths = new ArrayList<String>();
+	public static void reload() {
+		paths.clear();
+		getFilePaths();
+	}
 
-		File directory = new File(AppController.PHOTO_ALBUM);
+	public static ArrayList<String> getFilePaths() {
 
-		// check for directory
-		if (directory.isDirectory()) {
-			// getting list of file paths
-			File[] listFiles = directory.listFiles();
+		if (paths.isEmpty()) {
 
-			// Check for count
-			if (listFiles.length > 0) {
+			File directory = new File(Environment.getExternalStorageDirectory()
+					+ AppController.PHOTO_ALBUM);
 
-				// loop through all files
-				for (int i = 0; i < listFiles.length; i++) {
+			// check for directory
+			if (directory.isDirectory()) {
+				// getting list of file paths
+				File[] listFiles = directory.listFiles();
 
-					// get file path
-					String filePath = listFiles[i].getAbsolutePath();
+				// Check for count
+				if (listFiles.length > 0) {
 
-					// check for supported file extension
-					if (IsSupportedFile(filePath)) {
-						// Add image path to array list
-						filePaths.add(filePath);
+					// loop through all files
+					for (int i = 0; i < listFiles.length; i++) {
+
+						// get file path
+						String filePath = listFiles[i].getAbsolutePath();
+
+						// check for supported file extension
+						if (IsSupportedFile(filePath)) {
+							// Add image path to array list
+							paths.add(filePath);
+						}
 					}
 				}
-			} else {
-				// image directory is empty
-				Toast.makeText(
-						_context,
-						AppController.PHOTO_ALBUM
-								+ " is empty. Please load some images in it !",
-						Toast.LENGTH_LONG).show();
 			}
-
-		} else {
-			AlertDialog.Builder alert = new AlertDialog.Builder(_context);
-			alert.setTitle("Error!");
-			alert.setMessage(AppController.PHOTO_ALBUM
-					+ " directory path is not valid! Please set the image directory name AppConstant.java class");
-			alert.setPositiveButton("OK", null);
-			alert.show();
 		}
-
-		return filePaths;
+		return paths;
 	}
 
 	/*
@@ -79,7 +69,7 @@ public class Utils {
 	 * 
 	 * @returns boolean
 	 */
-	private boolean IsSupportedFile(String filePath) {
+	private static boolean IsSupportedFile(String filePath) {
 		String ext = filePath.substring((filePath.lastIndexOf(".") + 1),
 				filePath.length());
 

@@ -16,7 +16,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import com.afrsafe.gallery.FullScreenViewActivity;
+import com.afrsafe.activity.FullScreenViewActivity;
 
 public class GridViewImageAdapter extends BaseAdapter {
 

@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/bg_main" >
 
     <com.afrsafe.gallery.helper.TouchImageView
         android:id="@+id/imgDisplay"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitCenter"
+        android:background="@color/bg_main" />
+
+    <Button
+        android:id="@+id/btnExcluir"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignBaseline="@+id/btnClose"
+        android:layout_alignBottom="@+id/btnClose"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="19dp"
+        android:background="@color/btn_buton_bg"
+        android:paddingBottom="2dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="2dp"
+        android:text="Excluir"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/btnClose"
@@ -15,14 +33,14 @@
         android:layout_height="30dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp"
-        android:paddingTop="2dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/btn_buton_bg"
         android:paddingBottom="2dp"
-        android:background="@drawable/button_background"
-        android:textColor="#ffffff"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="Close" />
+        android:paddingTop="2dp"
+        android:text="Sair"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.afrsafe.gallery;
+package com.afrsafe.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,7 +11,6 @@ import com.afrsafe.gallery.helper.Utils;
 
 public class FullScreenViewActivity extends Activity {
 
-	private Utils utils;
 	private FullScreenImageAdapter adapter;
 	private ViewPager viewPager;
 
@@ -22,13 +21,11 @@ public class FullScreenViewActivity extends Activity {
 
 		viewPager = (ViewPager) findViewById(R.id.pager);
 
-		utils = new Utils(getApplicationContext());
-
 		Intent i = getIntent();
 		int position = i.getIntExtra("position", 0);
 
 		adapter = new FullScreenImageAdapter(FullScreenViewActivity.this,
-				utils.getFilePaths());
+				Utils.getFilePaths());
 
 		viewPager.setAdapter(adapter);
 

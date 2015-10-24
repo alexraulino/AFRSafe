@@ -25,6 +25,7 @@ import com.afrsafe.R;
 import com.afrsafe.app.AppController;
 import com.afrsafe.db.SQLiteHandler;
 import com.afrsafe.db.SessionManager;
+import com.afrsafe.gallery.helper.Utils;
 
 public class MainActivity extends Activity {
 
@@ -89,6 +90,10 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
+				Intent intent = new Intent(MainActivity.this,
+						GridViewActivity.class);
+				startActivity(intent);
+				finish();
 
 			}
 		});
@@ -102,7 +107,6 @@ public class MainActivity extends Activity {
 						Intent.ACTION_PICK,
 						android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 				galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-
 				startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
 
 			}
@@ -133,8 +137,12 @@ public class MainActivity extends Activity {
 				moveFile(getRealPathFromURI(cdata.getItemAt(i).getUri()));
 
 			}
-
+		} else {
+			Utils.ShowMensagem(
+					"Nenhuma imagem copiada, favor escolher uma foto do dispositivo!",
+					MainActivity.this);
 		}
+		Utils.reload();
 	}
 
 	public String getRealPathFromURI(Uri contentUri) {

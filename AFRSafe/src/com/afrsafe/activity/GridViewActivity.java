@@ -1,4 +1,4 @@
-package com.afrsafe.gallery;
+package com.afrsafe.activity;
 
 import java.util.ArrayList;
 
@@ -28,13 +28,13 @@ public class GridViewActivity extends Activity {
 
 		gridView = (GridView) findViewById(R.id.grid_view);
 
-		utils = new Utils(this);
+		utils = new Utils(getApplicationContext());
 
 		// Initilizing Grid View
 		InitilizeGridLayout();
 
 		// loading all image paths from SD card
-		imagePaths = utils.getFilePaths();
+		imagePaths = Utils.getFilePaths();
 
 		// Gridview adapter
 		adapter = new GridViewImageAdapter(GridViewActivity.this, imagePaths,
