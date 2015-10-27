@@ -3,9 +3,12 @@ package com.afrsafe.activity;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.GridView;
 
 import com.afrsafe.R;
@@ -42,6 +45,30 @@ public class GridViewActivity extends Activity {
 
 		// setting grid view adapter
 		gridView.setAdapter(adapter);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate our menu from the resources by using the menu inflater.
+		getMenuInflater().inflate(R.menu.main, menu);
+
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_voltar:
+			// Here we might start a background refresh task
+			Intent intent = new Intent(GridViewActivity.this,
+					MainActivity.class);
+			startActivity(intent);
+			finish();
+			return true;
+
+		}
+
+		return super.onOptionsItemSelected(item);
 	}
 
 	private void InitilizeGridLayout() {

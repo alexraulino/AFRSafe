@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.HashMap;
 
 import android.app.Activity;
 import android.content.ClipData;
@@ -64,9 +63,6 @@ public class MainActivity extends Activity {
 			}
 
 		}
-
-		// Fetching user details from SQLite
-		HashMap<String, String> user = db.getUserDetails();
 
 		// Logout button click event
 		btnSair.setOnClickListener(new View.OnClickListener() {
