@@ -10,6 +10,7 @@
     <string name="welcome">Bem Vindo</string>
     <string name="btn_logout">Sair</string>
     <string name="btn_ResetPassWord">Reset</string>
-   
+    <string name="btn_excluir">Excluir</string>
+    <string name="btn_restaurar">Restaurar</string>   
     
 </resources>

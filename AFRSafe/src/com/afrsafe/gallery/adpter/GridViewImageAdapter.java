@@ -86,6 +86,7 @@ public class GridViewImageAdapter extends BaseAdapter {
 			Intent i = new Intent(_activity, FullScreenViewActivity.class);
 			i.putExtra("position", _postion);
 			_activity.startActivity(i);
+			_activity.finish();
 		}
 
 	}

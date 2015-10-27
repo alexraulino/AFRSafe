@@ -7,5 +7,5 @@
         android:showAsAction="withText|ifRoom"
         android:title="@string/btn_link_to_login"/>
 
-
 </menu>
+ 

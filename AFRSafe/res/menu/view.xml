@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.afrsafe.activity.GridViewActivity" >
+
+    <item
+        android:id="@+id/menu_voltar"
+        android:showAsAction="withText|ifRoom"
+        android:title="@string/btn_link_to_login"/>
+    
+        <item
+        android:id="@+id/menu_excluir"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/btn_excluir"/>
+    <item
+        android:id="@+id/menu_restaurar"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/btn_restaurar"/>
+
+</menu>
